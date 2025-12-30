@@ -1,0 +1,687 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneVerse - Daily Scripture Made Simple | Build Consistent Faith Habits</title>
+    <meta name="description" content="Build a consistent daily rhythm of scripture, prayer, and reflection with OneVerse. One curated Bible verse daily, guided prayers, and memorization tools. No distractions, just daily truth.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007a8a;
+            --accent-color: #4dd0e1;
+            --text-dark: #1a202c;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 122, 138, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 122, 138, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            padding: 16px 32px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--bg-light) 0%, rgba(77, 208, 225, 0.1) 100%);
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+        
+        .phone-mockup {
+            max-width: 300px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .benefits {
+            background: var(--bg-light);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .benefit-icon {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .lead-magnet {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            text-align: center;
+        }
+        
+        .lead-magnet h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .email-form {
+            max-width: 500px;
+            margin: 40px auto 0;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            min-width: 250px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent-color);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+        
+        .testimonial-author {
+            margin-top: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            background: var(--bg-light);
+            padding: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 0 25px 25px;
+            color: var(--text-light);
+        }
+        
+        .pricing {
+            background: var(--bg-light);
+            text-align: center;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid var(--accent-color);
+            transform: scale(1.05);
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 20px 0;
+        }
+        
+        .final-cta {
+            background: linear-gradient(135deg, var(--text-dark), var(--primary-color));
+            color: white;
+            text-align: center;
+        }
+        
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .email-form {
+                flex-direction: column;
+            }
+            
+            .email-input {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">OneVerse</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="fade-in">
+                    <h1>Daily Scripture Made Simple</h1>
+                    <p>Build a consistent daily rhythm of scripture, prayer, and reflection—without overwhelm. One curated verse, one prayer, one moment with God.</p>
+                    <div class="hero-buttons">
+                        <a href="#download" class="btn-primary">Start Your Journey</a>
+                        <a href="#lead-magnet" class="btn-secondary">Get Free Verses Guide</a>
+                    </div>
+                </div>
+                <div class="phone-mockup">
+                    <svg width="300" height="600" viewBox="0 0 300 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="10" width="280" height="580" rx="40" fill="#1a202c"/>
+                        <rect x="20" y="20" width="260" height="560" rx="30" fill="white"/>
+                        <rect x="30" y="80" width="240" height="2" rx="1" fill="#e2e8f0"/>
+                        <text x="150" y="50" text-anchor="middle" fill="#007a8a" font-family="Inter" font-weight="600" font-size="16">OneVerse</text>
+                        <text x="150" y="150" text-anchor="middle" fill="#1a202c" font-family="Inter" font-weight="500" font-size="14">Today's Verse</text>
+                        <text x="150" y="200" text-anchor="middle" fill="#718096" font-family="Inter" font-size="12">"Be still and know that I am God."</text>
+                        <text x="150" y="220" text-anchor="middle" fill="#718096" font-family="Inter" font-size="10">Psalm 46:10</text>
+                        <rect x="100" y="280" width="100" height="40" rx="20" fill="#007a8a"/>
+                        <text x="150" y="305" text-anchor="middle" fill="white" font-family="Inter" font-size="12">Pray</text>
+                        <rect x="80" y="350" width="140" height="30" rx="15" fill="#4dd0e1"/>
+                        <text x="150" y="370" text-anchor="middle" fill="white" font-family="Inter" font-size="10">Memorize Verse</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section-padding">
+            <div class="container">
+                <div class="text-center fade-in">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--primary-color);">Everything You Need for Daily Faith</h2>
+                    <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">No feeds. No noise. Just daily truth delivered with intention and purpose.</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">🌿</div>
+                        <h3>Daily Verse</h3>
+                        <p>One carefully curated Bible verse each day, with optional themes like peace, faith, strength, and gratitude. Multiple translations available.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">🙏</div>
+                        <h3>Guided Prayer</h3>
+                        <p>Short, focused prayers aligned with each verse. Choose from written prayers, silent reflection prompts, or audio prayers.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Verse Memorization</h3>
+                        <p>Word-by-word reveal, hide/reveal mode, and tap-to-test recall features. Build scripture memory with daily streak tracking.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">📅</div>
+                        <h3>Gentle Consistency</h3>
+                        <p>Non-punitive streak tracking with encouraging reminders. Get weekly consistency summaries to celebrate your progress.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">⭐</div>
+                        <h3>Personal Reflection</h3>
+                        <p>Save favorite verses and add private notes. Everything stays offline-friendly and completely personal to you.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Distraction-Free Design</h3>
+                        <p>Clean, minimal interface with soft colors and both light/dark modes. No social features, just you and God's word.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="benefits section-padding">
+            <div class="container">
+                <div class="text-center fade-in">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--primary-color);">Transform Your Spiritual Life</h2>
+                    <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto;">See what happens when scripture becomes a natural part of your daily rhythm.</p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">✓</div>
+                        <div>
+                            <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color);">Build Lasting Habits</h4>
+                            <p style="color: var(--text-light);">Just 3-5 minutes daily creates a sustainable rhythm of faith that fits any schedule.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">✓</div>
+                        <div>
+                            <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color);">Reduce Spiritual Overwhelm</h4>
+                            <p style="color: var(--text-light);">No pressure to read entire chapters. One verse, one truth, one moment of connection.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">✓</div>
+                        <div>
+                            <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color);">Memorize Scripture Naturally</h4>
+                            <p style="color: var(--text-light);">Gentle memorization tools help God's word stick in your heart and mind effortlessly.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">✓</div>
+                        <div>
+                            <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color);">Perfect for Busy Professionals</h4>
+                            <p style="color: var(--text-light);">Start your day centered or wind down peacefully—fits seamlessly into your routine.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">✓</div>
+                        <div>
+                            <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color);">Strengthen New Believers</h4>
+                            <p style="color: var(--text-light);">Build foundational scripture knowledge without feeling overwhelmed or lost.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">✓</div>
+                        <div>
+                            <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color);">Create Family Moments</h4>
+                            <p style="color: var(--text-light);">Simple enough for the whole family to engage together in meaningful spiritual time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lead-magnet" class="lead-magnet section-padding">
+            <div class="container text-center fade-in">
+                <h2>Get Your Free Scripture Foundation</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9;">Download our free guide: "30 Bible Verses Every Christian Should Know" — perfect for starting your memorization journey.</p>
+                
+                <form class="email-form" action="thank-you.html" method="POST">
+                    <input type="email" class="email-input" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn-primary" style="background: white; color: var(--primary-color);">Get Free Guide</button>
+                </form>
+                
+                <p style="font-size: 0.9rem; margin-top: 20px; opacity: 0.8;">No spam. Just encouragement and the occasional update about OneVerse.</p>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="container">
+                <div class="text-center fade-in">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--primary-color);">What Users Are Saying</h2>
+                    <p style="font-size: 1.2rem; color: var(--text-light);">Real stories from people building consistent faith habits.</p>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial fade-in">
+                        <p style="color: var(--text-light); font-style: italic; margin-bottom: 20px;">OneVerse has become my morning anchor. Just 5 minutes with God's word sets the tone for my entire day. The memorization feature is genius!</p>
+                        <div class="testimonial-author">— Sarah M., Marketing Director</div>
+                    </div>
+                    
+                    <div class="testimonial fade-in">
+                        <p style="color: var(--text-light); font-style: italic; margin-bottom: 20px;">As a new believer, I was overwhelmed trying to read whole chapters. OneVerse gives me bite-sized truth I can actually digest and remember.</p>
+                        <div class="testimonial-author">— David K., College Student</div>
+                    </div>
+                    
+                    <div class="testimonial fade-in">
+                        <p style="color: var(--text-light); font-style: italic; margin-bottom: 20px;">Finally, a faith app without all the social noise! It's just me, God's word, and peaceful reflection. Exactly what I needed.</p>
+                        <div class="testimonial-author">— Rebecca T., Mother of 3</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing section-padding">
+            <div class="container">
+                <div class="text-center fade-in">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--primary-color);">Choose Your Path</h2>
+                    <p style="font-size: 1.2rem; color: var(--text-light);">Start free, then unlock your full spiritual potential.</p>
+                </div>
+                
+                <div class="pricing-cards">
+                    <div class="pricing-card fade-in">
+                        <h3 style="color: var(--primary-color); font-size: 1.5rem; margin-bottom: 10px;">Free</h3>
+                        <div class="price">$0</div>
+                        <ul style="list-style: none; text-align: left; margin-bottom: 30px;">
+                            <li style="margin-bottom: 10px;">✓ Daily verse & prayer</li>
+                            <li style="margin-bottom: 10px;">✓ Basic memorization</li>
+                            <li style="margin-bottom: 10px;">✓ Simple reminders</li>
+                            <li style="color: var(--text-light);">• Limited translations</li>
+                        </ul>
+                        <a href="#download" class="btn-secondary">Start Free</a>
+                    </div>
+                    
+                    <div class="pricing-card featured fade-in">
+                        <div style="background: var(--accent-color); color: white; padding: 10px; margin: -40px -40px 20px; text-align: center; font-weight: 600;">MOST POPULAR</div>
+                        <h3 style="color: var(--primary-color); font-size: 1.5rem; margin-bottom: 10px;">Premium</h3>
+                        <div class="price">$2.99<span style="font-size: 1rem; color: var(--text-light);">/month</span></div>
+                        <ul style="list-style: none; text-align: left; margin-bottom: 30px;">
+                            <li style="margin-bottom: 10px;">✓ Everything in Free</li>
+                            <li style="margin-bottom: 10px;">✓ Advanced memorization modes</li>
+                            <li style="margin-bottom: 10px;">✓ Themed verse packs</li>
+                            <li style="margin-bottom: 10px;">✓ Audio prayers</li>
+                            <li style="margin-bottom: 10px;">✓ Multiple translations</li>
+                            <li style="margin-bottom: 10px;">✓ Yearly reading plans</li>
+                        </ul>
+                        <a href="#download" class="btn-primary">Go Premium</a>
+                    </div>
+                    
+                    <div class="pricing-card fade-in" style="border: 2px solid gold;">
+                        <div style="background: gold; color: var(--text-dark); padding: 10px; margin: -40px -40px 20px; text-align: center; font-weight: 600;">LIMITED TIME</div>
+                        <h3 style="color: var(--primary-color); font-size: 1.5rem; margin-bottom: 10px;">Lifetime</h3>
+                        <div class="price" style="font-size: 2.5rem;">$49<span style="font-size: 1rem; color: var(--text-light);">once</span></div>
+                        <p style="color: var(--accent-color); font-weight: 600; margin-bottom: 20px;">Save $87 vs. yearly!</p>
+                        <ul style="list-style: none; text-align: left; margin-bottom: 30px;">
+                            <li style="margin-bottom: 10px;">✓ Everything in Premium</li>
+                            <li style="margin-bottom: 10px;">✓ Lifetime access</li>
+                            <li style="margin-bottom: 10px;">✓ All future features</li>
+                            <li style="margin-bottom: 10px;">✓ Priority support</li>
+                        </ul>
+                        <a href="#download" class="btn-primary" style="background: gold; color: var(--text-dark);">Claim Lifetime Deal</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section-padding">
+            <div class="container">
+                <div class="text-center fade-in">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 60px; color: var(--primary-color);">Frequently Asked Questions</h2>
+                </div>
+                
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div class="faq-item fade-in">
+                        <button class="faq-question">
+                            How is OneVerse different from other Bible apps?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            OneVerse focuses on simplicity and consistency. Instead of overwhelming you with dozens of reading plans and social features, we deliver one carefully selected verse per day with guided prayer and memorization tools. It's designed for busy people who want spiritual depth without complexity.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in">
+                        <button class="faq-question">
+                            Can I use OneVerse if I'm new to reading the Bible?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Absolutely! OneVerse is perfect for new believers. We select verses that are accessible and meaningful, provide context when helpful, and offer guided prayers to help you connect with each passage. You'll build biblical knowledge naturally, one verse at a time.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in">
+                        <button class="faq-question">
+                            How much time does OneVerse require each day?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer">
